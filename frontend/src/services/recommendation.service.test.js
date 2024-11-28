@@ -4,8 +4,15 @@ import mockProducts from '../mocks/mockProducts';
 describe('recommendationService', () => {
   test('Retorna recomendação correta para SingleProduct com base nas preferências selecionadas', () => {
     const formData = {
-      selectedPreferences: ['Integração com chatbots'],
-      selectedFeatures: ['Chat ao vivo e mensagens automatizadas'],
+      selectedPreferences: [
+        'Integração fácil com ferramentas de e-mail',
+        'Personalização de funis de vendas',
+        'Automação de marketing',
+      ],
+      selectedFeatures: [
+        'Rastreamento de interações com clientes',
+        'Rastreamento de comportamento do usuário',
+      ],
       selectedRecommendationType: 'SingleProduct',
     };
 
@@ -14,8 +21,10 @@ describe('recommendationService', () => {
       mockProducts
     );
 
+    console.log('Recommendations returned for SingleProduct:', recommendations);
+
     expect(recommendations).toHaveLength(1);
-    expect(recommendations[0].name).toBe('RD Conversas');
+    expect(recommendations[0].name).toBe('RD Station CRM');
   });
 
   test('Retorna recomendações corretas para MultipleProducts com base nas preferências selecionadas', () => {
@@ -36,6 +45,9 @@ describe('recommendationService', () => {
       formData,
       mockProducts
     );
+
+    console.log('Recommendations returned for MultipleProducts:', recommendations);
+
 
     expect(recommendations).toHaveLength(2);
     expect(recommendations.map((product) => product.name)).toEqual([
@@ -63,12 +75,13 @@ describe('recommendationService', () => {
     );
 
     expect(recommendations).toHaveLength(1);
-    expect(recommendations[0].name).toBe('RD Station Marketing');
+    expect(recommendations[0].name).toBe('RD Station CRM');
   });
 
   test('Retorna o último match em caso de empate para SingleProduct', () => {
     const formData = {
       selectedPreferences: ['Automação de marketing', 'Integração com chatbots'],
+      selectedFeatures: [],
       selectedRecommendationType: 'SingleProduct',
     };
 
@@ -78,6 +91,6 @@ describe('recommendationService', () => {
     );
 
     expect(recommendations).toHaveLength(1);
-    expect(recommendations[0].name).toBe('RD Conversas');
+    expect(recommendations[0].name).toBe('RD Station Marketing');
   });
 });

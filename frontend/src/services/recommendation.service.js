@@ -1,8 +1,12 @@
 // recommendation.service.js
 
 function getRecommendations(formData, products) {
-  const { selectedPreferences, selectedFeatures, selectedRecommendationType } = formData;
-
+  const {
+    selectedPreferences = [],
+    selectedFeatures = [],
+    selectedRecommendationType,
+  } = formData;
+  
   // Função para calcular a pontuação de correspondência de um produto
   const calculateMatchScore = (product) => {
     const preferenceMatches = product.preferences.filter((pref) =>
