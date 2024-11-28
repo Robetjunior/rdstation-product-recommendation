@@ -29,6 +29,7 @@ Instale as dependências:
 ```
 yarn install
 ```
+
 ## Execução
 Para iniciar o frontend:
 ```
@@ -38,11 +39,6 @@ npm run start:frontend
 Para iniciar o backend:
 ```
 npm run start:backend
-```
-
-Para iniciar ambos simultaneamente:
-```
-npm run dev
 ```
 
 ## Testes
